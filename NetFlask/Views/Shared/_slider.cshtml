@@ -1,0 +1,46 @@
+﻿@{ 
+    //Permet d'obtenir un identifiant unique
+    Guid identifiant = Guid.NewGuid();
+}
+<!--- L'id choisi @identifiant -->
+<div class="review-slider">
+    <ul id="@identifiant">
+        @foreach (NetFlask.Models.SliderModel item in Model)
+        {
+            <li><img src="~/images/Posters/Medium/@item.Picture" alt="" /></li>
+        }
+    </ul>
+</div>
+
+ @*//!!! ON NE PEUT PAS UTILISER LES @Section*@
+    <script type="text/javascript">
+        //js => Window.onLoad(function(){} )
+        $(window).load(function () {
+
+            //$ = JQuery
+            //$("#...) ==> js =>document.getElementById(...)
+            $("#@identifiant").flexisel({
+                visibleItems: 6,
+                animationSpeed: 100,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: false,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 2
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 3
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 4
+                    }
+                }
+            });
+        });
+    </script>
+  

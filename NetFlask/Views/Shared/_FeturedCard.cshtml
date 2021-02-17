@@ -1,0 +1,51 @@
+﻿@model NetFlask.Models.FeaturedCardModel
+@{
+    //string type;
+    //if (ViewData["Type"]!=null)
+    //{
+    //     type = ViewData["Type"].ToString();
+    //}
+    //else
+    //{
+    //     type = null;
+    //}
+    string Type = ViewData["Type"]?.ToString();
+}
+@if (Type != "AlsoLike")
+{
+    if (Model.MoreInfo != "")
+    {
+        <ul>
+            <li class="ent">
+                <a href="single.html"><img src="~/images/Posters/Normal/@Model.Movies.NormalPoster" alt="" /></a>
+            </li>
+            <li>
+                <a href="single.html">@Model.MoreInfo</a>
+
+            </li>
+            <div class="clearfix"></div>
+        </ul>
+    }
+    else
+    {
+
+        <li>
+            <a href="single.html"><img src="/images/Posters/Normal/@Model.Movies.NormalPoster" alt="" /></a>
+            <p>@Model.Movies.Title movie review</p>
+        </li>
+    }
+
+}
+else
+{
+    <div class="might-grid">
+        <div class="grid-might">
+            <a href="single.html"><img src="~/images/Posters/Medium/@Model.Movies.MediumPoster" class="img-responsive" alt=""> </a>
+        </div>
+        <div class="might-top">
+            <p>@Model.MoreInfo</p>
+            <a href="single.html">@Model.Movies.Title <i> </i></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

@@ -1,0 +1,89 @@
+﻿@model NetFlask.Models.HomeViewModel /*Like unboxing*/
+@section BiblioScripts
+{
+    @Scripts.Render("~/bundles/JqueryFlexiSel")
+}
+ 
+
+@section MoreCss
+{
+    <style>
+        .header {
+            background: url('@Model.FrontMovie.BigPicture') no-repeat 0px 0px;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+        }
+    </style>
+}
+<div class="header">
+    <div class="top-header">
+        <div class="logo">
+            <a href="index.html"><img src="/images/logo.png" alt="" /></a>
+            <p>@Model.Title - @Session["MessageInfo"]</p>
+        </div>
+        <div class="search">
+            <form>
+                <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}" />
+                <input type="submit" value="">
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="header-info">
+        <h1>@Model.FrontMovie.Title</h1>
+        <p class="age"><a href="#">@Model.FrontMovie.Age</a>@Model.FrontMovie.Directors </p>
+        <p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  @Model.FrontMovie.Rating/10</p>
+        <p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; @Model.FrontMovie.Genres</p>
+        <p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;@Model.FrontMovie.Release.Day @Model.FrontMovie.Release.ToString("MMMM") @Model.FrontMovie.Release.Year</p>
+        <p class="special">@Model.FrontMovie.Description</p>
+        <a class="video" href="@Model.FrontMovie.VideoLink"><i class="video1"></i>WATCH TRAILER</a>
+        <a class="book" href="#"><i class="book1"></i>BOOK TICKET</a>
+    </div>
+</div>
+@{
+    Html.RenderPartial("~/Views/Shared/_slider.cshtml", Model.Slider1);
+}
+<div class="video">
+    <iframe src="@Model.VideoHome" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="news">
+    <div class="col-md-6 news-left-grid">
+        <h3>Don’t be late,</h3>
+        <h2>Book your ticket now!</h2>
+        <h4>Easy, simple & fast.</h4>
+        <a href="#"><i class="book"></i>BOOK TICKET</a>
+        <p>Get Discount up to <strong>10%</strong> if you are a member!</p>
+    </div>
+    <div class="col-md-6 news-right-grid">
+        <h3>News</h3>
+
+        @foreach (NetFlask.Models.NewsModel item in Model.News)
+        {
+            <div class="news-grid">
+                <h5>@item.Title</h5>
+                <label>@item.TheDate.ToString("MMM d yyyy")</label>
+                <p>@item.Description</p>
+            </div>
+        }
+
+        <a class="more" href="#">MORE</a>
+    </div>
+    <div class="clearfix"></div>
+</div>
+@*<div class="more-reviews">
+        <ul id="flexiselDemo2">
+            @foreach (NetFlask.Models.SliderModel item in Model.Slider2)
+            {
+                <li><img src="~/images/Posters/Medium/@item.Picture" alt="" /></li>
+            }
+
+        </ul>
+
+
+    </div>*@
+@{
+    Html.RenderPartial("~/Views/Shared/_slider.cshtml", Model.Slider2);
+}

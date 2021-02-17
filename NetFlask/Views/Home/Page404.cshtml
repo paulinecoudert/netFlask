@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NetFlask.Models.SliderModel>
+@{
+    ViewBag.Title = "Page404";
+}
+
+<div class="error-content">
+    <div class="top-header span_top">
+        <div class="logo">
+            <a href="/Home/Index"><img src="/images/logo.png" alt="" /></a>
+            <p>Movie Theater</p>
+        </div>
+        <div class="search v-search">
+            <form>
+                <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}" />
+                <input type="submit" value="">
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="error-404 text-center">
+        <h2>404</h2>
+        <p>Sorry this was unexpected</p>
+        <a class="b-home" href="/Home/Index">Back to Home</a>
+    </div>
+</div>
+ 
